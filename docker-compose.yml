@@ -39,18 +39,18 @@ services:
       - --host
       - 0.0.0.0
       - --port
-      - '8080'
+      - '9090'
       - --scheme
       - http
     image: semitechnologies/weaviate:1.24.2
     ports:
-      - 8080:8080
-      - 3101:8080
+      - 9090:9090
+      - 3000:9090
     volumes:
       - weaviate_data:/var/lib/weaviate
     restart: on-failure:0
     healthcheck:
-      test: wget --no-verbose --tries=3 --spider http://localhost:3101/v1/.well-known/ready || exit 1
+      test: wget --no-verbose --tries=3 --spider http://localhost:9090/v1/.well-known/ready || exit 1
       interval: 5s
       timeout: 10s
       retries: 5
