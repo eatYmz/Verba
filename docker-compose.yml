@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - 3100:8000
+      - 8000:8000
     environment:
       - WEAVIATE_URL_VERBA=http://weaviate:9090
       - OPENAI_API_KEY=$OPENAI_API_KEY
@@ -28,7 +28,7 @@ services:
       weaviate:
         condition: service_healthy
     healthcheck:
-      test: wget --no-verbose --tries=3 --spider http://localhost:3100 || exit 1
+      test: wget --no-verbose --tries=3 --spider http://localhost:8000 || exit 1
       interval: 5s
       timeout: 10s
       retries: 5
